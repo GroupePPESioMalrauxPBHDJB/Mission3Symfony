@@ -33,9 +33,9 @@
         {% for unI in unS.intervenant %}
         <h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
       {% endfor %}
+        <p><button type="submit" href=""> S'incrire à ce stage </button></p>
         <a href="{{ path('LamMdlBundle_formationinformatique') }}"> Retour </a>
   {% set nb=nb+1 %}
   {% endfor %}
-
 
 {% endblock %}
