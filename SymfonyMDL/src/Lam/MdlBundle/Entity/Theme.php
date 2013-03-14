@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Lam\MdlBundle\Entity\Theme
  *
- * @ORM\Table()
+ * @ORM\Table(name="theme")
  * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\ThemeRepository")
  */
 class Theme
@@ -15,18 +15,19 @@ class Theme
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $NomTheme
+     * @var string $nomtheme
      *
-     * @ORM\Column(name="NomTheme", type="string", length=100)
+     * @ORM\Column(name="NomTheme", type="string", length=100, nullable=false)
      */
-    private $NomTheme;
+    private $nomtheme;
+
 
 
     /**
@@ -40,46 +41,22 @@ class Theme
     }
 
     /**
-     * Set NomTheme
+     * Set nomtheme
      *
-     * @param string $nomTheme
+     * @param string $nomtheme
      */
-    public function setNomTheme($nomTheme)
+    public function setNomtheme($nomtheme)
     {
-        $this->NomTheme = $nomTheme;
+        $this->nomtheme = $nomtheme;
     }
 
     /**
-     * Get NomTheme
+     * Get nomtheme
      *
      * @return string 
      */
-    public function getNomTheme()
+    public function getNomtheme()
     {
-        return $this->NomTheme;
-    }
-    public function __construct()
-    {
-        $this->lesDetails = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add lesDetails
-     *
-     * @param Lam\MdlBundle\Entity\Detail $lesDetails
-     */
-    public function addDetail(\Lam\MdlBundle\Entity\Detail $lesDetails)
-    {
-        $this->lesDetails[] = $lesDetails;
-    }
-
-    /**
-     * Get lesDetails
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getLesDetails()
-    {
-        return $this->lesDetails;
+        return $this->nomtheme;
     }
 }
