@@ -29,7 +29,7 @@
         Repas: {{ unS.Repas }}</br>
      
         {% endif %}
-        {% set nbi=  (unS.lesIntervenants|length)%}
+        {% set nbi=  (unS.intervenant|length)%}
         {% if nbi>1  %}
         <p>Les intervenants :</p>
             {% else %}
@@ -39,7 +39,7 @@
                 Le(s) docteur(s)
                 {% endif %}
         </p>     
-        {% for unI in unS.lesIntervenants %}
+        {% for unI in unS.intervenant %}
         <h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
       {% endfor %}
   {% set nb=nb+1 %}
