@@ -11,7 +11,7 @@
 
   {% for unS in lesStages %}
 
-<a href="{{ path('LamMdlBundle_formationinformatique') }}"> Retour </a>
+
 
      <h2>Stage {{nb}}</h2>
       Date: {{ unS.Date|date('d-m-Y') }}</br>
@@ -23,16 +23,17 @@
         Repas: {{ unS.Repas }}</br>
      
 
-        {% set nbi=  (unS.lesIntervenants|length)%}
+        {% set nbi=  (unS.intervenant|length)%}
         {% if nbi>1  %}
         <p>Les intervenants :</p>
             {% else %}
         <p>L'intervenant :</p>
             {% endif %}
                 
-        {% for unI in unS.lesIntervenants %}
+        {% for unI in unS.intervenant %}
         <h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
       {% endfor %}
+        <a href="{{ path('LamMdlBundle_formationinformatique') }}"> Retour </a>
   {% set nb=nb+1 %}
   {% endfor %}
 
