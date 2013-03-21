@@ -13,11 +13,11 @@ LamMdlBundle_datesstageinfo:
     pattern:  /datesstageinfo/{num}
     defaults: { _controller: LamMdlBundle:FormationInformatique:stage , num:1}
 LamMdlBundle_InscriptionInformatique:
-    pattern:  /InscriptionInfo
-    defaults: { _controller: LamMdlBundle:Inscription:InscriptionInfoIndex }
+    pattern:  /InscriptionInfo/{idFormation}
+    defaults: { _controller: LamMdlBundle:Inscription:InscriptionInfoIndex, idFormation:1 }
 LamMdlBundle_InscriptionSport:
-    pattern:  /InscriptionSport
-    defaults: { _controller: LamMdlBundle:Inscription:InscriptionSportIndex }
+    pattern:  /InscriptionSport/{idFormation}
+    defaults: { _controller: LamMdlBundle:Inscription:InscriptionSportIndex, idFormation:1 }
 LamMdlBundle_formationsport:
     pattern:  /fs
     defaults: { _controller: LamMdlBundle:FormationSport:liste }    
