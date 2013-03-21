@@ -13,7 +13,6 @@ class formationType extends AbstractType {
     
     public function getName()
     { return 'lam_mdlbundle_formationtype';}
-
     
 }
 ?>
