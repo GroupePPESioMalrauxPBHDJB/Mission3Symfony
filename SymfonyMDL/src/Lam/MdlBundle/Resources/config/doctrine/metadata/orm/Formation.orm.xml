@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Formation" table="formation">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="date" type="date" column="Date"/>
+    <field name="horaire" type="string" column="Horaire" length="30"/>
+    <field name="salle" type="string" column="Salle" length="30"/>
+    <field name="adresse" type="string" column="Adresse" length="150"/>
+    <field name="cout" type="string" column="Cout" length="100"/>
+    <field name="repas" type="string" column="Repas" length="100"/>
+    <field name="datelimite" type="date" column="DateLimite"/>
+    <field name="nbinscrit" type="integer" column="nbInscrit"/>
+    <many-to-many field="intervenant" target-entity="Intervenant" inversed-by="formation">
+      <join-table name="formation_intervenant">
+        <join-columns>
+          <join-column name="formation_id" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="intervenant_id" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-one field="laformationinformatique" target-entity="Formationinformatique" orphan-removal="">
+      <join-columns>
+        <join-column name="laFormationInformatique_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="laformationsport" target-entity="Formationsport" orphan-removal="">
+      <join-columns>
+        <join-column name="laFormationSport_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>
