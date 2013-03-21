@@ -12,8 +12,12 @@ LamMdlBundle_contenuformationinformatique:
 LamMdlBundle_datesstageinfo:
     pattern:  /datesstageinfo/{num}
     defaults: { _controller: LamMdlBundle:FormationInformatique:stage , num:1}
-
-
+LamMdlBundle_InscriptionInformatique:
+    pattern:  /InscriptionInfo
+    defaults: { _controller: LamMdlBundle:Inscription:InscriptionInfoIndex }
+LamMdlBundle_InscriptionSport:
+    pattern:  /InscriptionSport
+    defaults: { _controller: LamMdlBundle:Inscription:InscriptionSportIndex }
 LamMdlBundle_formationsport:
     pattern:  /fs
     defaults: { _controller: LamMdlBundle:FormationSport:liste }    

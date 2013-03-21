@@ -22,45 +22,34 @@ class Organisation
     private $id;
 
     /**
-     * @var string $nomorganisation
+     * @var string $nom
      *
-     * @ORM\Column(name="nomOrganisation", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
-    private $nomorganisation;
+    private $nom;
 
     /**
      * @var string $mail
      *
-     * @ORM\Column(name="mail", type="string", length=100, nullable=false)
+     * @ORM\Column(name="mail", type="string", length=255, nullable=false)
      */
     private $mail;
 
     /**
-     * @var string $nomresponsable
+     * @var string $nomResponsable
      *
-     * @ORM\Column(name="nomResponsable", type="string", length=50, nullable=false)
+     * @ORM\Column(name="nom_responsable", type="string", length=255, nullable=false)
      */
-    private $nomresponsable;
+    private $nomResponsable;
 
     /**
-     * @var string $prenomresponsable
+     * @var string $prenomResponsable
      *
-     * @ORM\Column(name="prenomResponsable", type="string", length=50, nullable=false)
+     * @ORM\Column(name="prenom_responsable", type="string", length=255, nullable=false)
      */
-    private $prenomresponsable;
+    private $prenomResponsable;
 
-    /**
-     * @var Formation
-     *
-     * @ORM\ManyToMany(targetEntity="Formation", mappedBy="idorganistion")
-     */
-    private $idformation;
 
-    public function __construct()
-    {
-        $this->idformation = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
 
     /**
      * Get id
@@ -73,23 +62,23 @@ class Organisation
     }
 
     /**
-     * Set nomorganisation
+     * Set nom
      *
-     * @param string $nomorganisation
+     * @param string $nom
      */
-    public function setNomorganisation($nomorganisation)
+    public function setNom($nom)
     {
-        $this->nomorganisation = $nomorganisation;
+        $this->nom = $nom;
     }
 
     /**
-     * Get nomorganisation
+     * Get nom
      *
      * @return string 
      */
-    public function getNomorganisation()
+    public function getNom()
     {
-        return $this->nomorganisation;
+        return $this->nom;
     }
 
     /**
@@ -113,62 +102,42 @@ class Organisation
     }
 
     /**
-     * Set nomresponsable
+     * Set nomResponsable
      *
-     * @param string $nomresponsable
+     * @param string $nomResponsable
      */
-    public function setNomresponsable($nomresponsable)
+    public function setNomResponsable($nomResponsable)
     {
-        $this->nomresponsable = $nomresponsable;
+        $this->nomResponsable = $nomResponsable;
     }
 
     /**
-     * Get nomresponsable
+     * Get nomResponsable
      *
      * @return string 
      */
-    public function getNomresponsable()
+    public function getNomResponsable()
     {
-        return $this->nomresponsable;
+        return $this->nomResponsable;
     }
 
     /**
-     * Set prenomresponsable
+     * Set prenomResponsable
      *
-     * @param string $prenomresponsable
+     * @param string $prenomResponsable
      */
-    public function setPrenomresponsable($prenomresponsable)
+    public function setPrenomResponsable($prenomResponsable)
     {
-        $this->prenomresponsable = $prenomresponsable;
+        $this->prenomResponsable = $prenomResponsable;
     }
 
     /**
-     * Get prenomresponsable
+     * Get prenomResponsable
      *
      * @return string 
      */
-    public function getPrenomresponsable()
+    public function getPrenomResponsable()
     {
-        return $this->prenomresponsable;
-    }
-
-    /**
-     * Add idformation
-     *
-     * @param Lam\MdlBundle\Entity\Formation $idformation
-     */
-    public function addFormation(\Lam\MdlBundle\Entity\Formation $idformation)
-    {
-        $this->idformation[] = $idformation;
-    }
-
-    /**
-     * Get idformation
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getIdformation()
-    {
-        return $this->idformation;
+        return $this->prenomResponsable;
     }
 }

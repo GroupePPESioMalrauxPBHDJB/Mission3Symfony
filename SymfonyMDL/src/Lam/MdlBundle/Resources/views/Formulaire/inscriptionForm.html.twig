@@ -1,0 +1,25 @@
+{% extends 'LamMdlBundle::layout.html.twig' %}
+
+{% block body %}
+{% if message %}
+ <p>{{ message }}</p>
+
+{% endif  %}
+ 
+  <h1>Inscription Formation </h1>
+  
+  <form action="{{ path('LamMdlBundle_ajoutVisiteur')}}" method="post" {{ form_enctype(form) }}>
+{{ form_widget(form)}}
+     {{ form_label(form.nom) }} {{ form_errors(form.nom) }} {{ form_widget(form.nom) }}     
+     {{ form_label(form.prenom) }} {{ form_errors(form.prenom) }} {{ form_widget(form.prenom) }}   
+     {{ form_label(form.age) }} {{ form_errors(form.age) }} {{ form_widget(form.age) }}
+     {{ form_label(form.age) }} {{ form_errors(form.age) }} {{ form_widget(form.age) }}  
+     {{ form_label(form.age) }} {{ form_errors(form.age) }} {{ form_widget(form.age) }}   
+          
+          <p> <button type="submit">Ajout</button></p>
+      </form>
+
+  <p><a href="{{'http://localhost/Mission3Symfony/SymfonyMDL/web/app_dev.php/Mdl/'}}">Retour</a></p>
+ 
+
+{% endblock %}
