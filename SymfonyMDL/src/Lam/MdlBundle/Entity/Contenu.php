@@ -46,9 +46,7 @@ class Contenu
     /**
      * @var Formationinformatique
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\OneToOne(targetEntity="Formationinformatique")
+     * @ORM\ManyToOne(targetEntity="Formationinformatique")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="laFormationInformatique_id", referencedColumnName="id")
      * })
@@ -58,9 +56,7 @@ class Contenu
     /**
      * @var Theme
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\OneToOne(targetEntity="Theme")
+     * @ORM\ManyToOne(targetEntity="Theme")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="leTheme_id", referencedColumnName="id")
      * })
