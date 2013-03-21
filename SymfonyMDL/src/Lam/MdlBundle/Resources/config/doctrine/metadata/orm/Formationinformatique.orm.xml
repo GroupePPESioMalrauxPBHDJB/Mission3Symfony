@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Formationinformatique" table="formationinformatique">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="titre" type="string" column="Titre" length="100"/>
+    <field name="objectif" type="text" column="Objectif"/>
+    <field name="public" type="string" column="Public" length="150"/>
+    <field name="prerequis" type="text" column="Prerequis"/>
+    <field name="logo" type="string" column="Logo" length="50"/>
+    <field name="nbplace" type="integer" column="nbPlace"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>
