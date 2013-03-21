@@ -93,21 +93,6 @@ class Formation
     private $intervenant;
 
     /**
-     * @var Organisation
-     *
-     * @ORM\ManyToMany(targetEntity="Organisation", inversedBy="idformation")
-     * @ORM\JoinTable(name="inscription",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idFormation", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idOrganistion", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $idorganistion;
-
-    /**
      * @var Formationinformatique
      *
      * @ORM\ManyToOne(targetEntity="Formationinformatique")
@@ -130,7 +115,6 @@ class Formation
     public function __construct()
     {
         $this->intervenant = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->idorganistion = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 
@@ -322,26 +306,6 @@ class Formation
     public function getIntervenant()
     {
         return $this->intervenant;
-    }
-
-    /**
-     * Add idorganistion
-     *
-     * @param Lam\MdlBundle\Entity\Organisation $idorganistion
-     */
-    public function addOrganisation(\Lam\MdlBundle\Entity\Organisation $idorganistion)
-    {
-        $this->idorganistion[] = $idorganistion;
-    }
-
-    /**
-     * Get idorganistion
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getIdorganistion()
-    {
-        return $this->idorganistion;
     }
 
     /**
