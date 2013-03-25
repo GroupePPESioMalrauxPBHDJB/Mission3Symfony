@@ -6,8 +6,16 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="nbinscrit" type="integer" column="nbInscrit"/>
-    <field name="idOrganisation" type="integer" column="id_organisation"/>
-    <field name="idFormation" type="integer" column="id_formation"/>
+    <many-to-one field="idFormation" target-entity="Formation" orphan-removal="">
+      <join-columns>
+        <join-column name="id_formation" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idOrganisation" target-entity="Organisation" orphan-removal="">
+      <join-columns>
+        <join-column name="id_organisation" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
     <lifecycle-callbacks/>
   </entity>
 </doctrine-mapping>

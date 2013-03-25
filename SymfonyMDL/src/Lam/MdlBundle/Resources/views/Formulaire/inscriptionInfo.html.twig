@@ -1,14 +1,14 @@
 {% extends 'LamMdlBundle::layout.html.twig' %}
 
 {% block body %}
-{#{% if message %}
- <p>{{ message }}</p>
+{% if mess %}
+ <p>{{ mess }}</p>
 
-{% endif  %}#}
+{% endif  %}
  
   <h1>Inscription Formation Informatique </h1>
   
-  <form action="{{ path('LamMdlBundle_InscriptionInformatique')}}" method="post" {{ form_enctype(form) }}>
+  <form action="{{ path('LamMdlBundle_InscriptionInformatique',{'idFormation':idFormation}) }}" method="post" {{ form_enctype(form) }}>
 {{ form_widget(form)}}
     
       

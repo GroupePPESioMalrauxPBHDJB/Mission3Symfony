@@ -5,7 +5,7 @@ namespace Lam\MdlBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Lam\MdlBundle\Entity\
+ * Lam\MdlBundle\Entity\Intervenant
  *
  * @ORM\Table(name="intervenant")
  * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\IntervenantRepository")

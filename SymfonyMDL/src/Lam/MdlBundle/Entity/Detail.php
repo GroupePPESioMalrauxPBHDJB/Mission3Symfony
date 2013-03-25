@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Lam\MdlBundle\Entity\Detail
  *
  * @ORM\Table(name="detail")
-  * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\DetailRepository")
+ * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\DetailRepository")
  */
 class Detail
 {

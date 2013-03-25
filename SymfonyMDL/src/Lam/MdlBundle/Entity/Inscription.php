@@ -29,18 +29,24 @@ class Inscription
     private $nbinscrit;
 
     /**
-     * @var integer $idOrganisation
+     * @var Formation
      *
-     * @ORM\Column(name="id_organisation", type="integer", nullable=false)
-     */
-    private $idOrganisation;
-
-    /**
-     * @var integer $idFormation
-     *
-     * @ORM\Column(name="id_formation", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Formation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_formation", referencedColumnName="id")
+     * })
      */
     private $idFormation;
+
+    /**
+     * @var Organisation
+     *
+     * @ORM\ManyToOne(targetEntity="Organisation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_organisation", referencedColumnName="id")
+     * })
+     */
+    private $idOrganisation;
 
 
 
@@ -75,31 +81,11 @@ class Inscription
     }
 
     /**
-     * Set idOrganisation
-     *
-     * @param integer $idOrganisation
-     */
-    public function setIdOrganisation($idOrganisation)
-    {
-        $this->idOrganisation = $idOrganisation;
-    }
-
-    /**
-     * Get idOrganisation
-     *
-     * @return integer 
-     */
-    public function getIdOrganisation()
-    {
-        return $this->idOrganisation;
-    }
-
-    /**
      * Set idFormation
      *
-     * @param integer $idFormation
+     * @param Lam\MdlBundle\Entity\Formation $idFormation
      */
-    public function setIdFormation($idFormation)
+    public function setIdFormation(\Lam\MdlBundle\Entity\Formation $idFormation)
     {
         $this->idFormation = $idFormation;
     }
@@ -107,10 +93,30 @@ class Inscription
     /**
      * Get idFormation
      *
-     * @return integer 
+     * @return Lam\MdlBundle\Entity\Formation 
      */
     public function getIdFormation()
     {
         return $this->idFormation;
+    }
+
+    /**
+     * Set idOrganisation
+     *
+     * @param Lam\MdlBundle\Entity\Organisation $idOrganisation
+     */
+    public function setIdOrganisation(\Lam\MdlBundle\Entity\Organisation $idOrganisation)
+    {
+        $this->idOrganisation = $idOrganisation;
+    }
+
+    /**
+     * Get idOrganisation
+     *
+     * @return Lam\MdlBundle\Entity\Organisation 
+     */
+    public function getIdOrganisation()
+    {
+        return $this->idOrganisation;
     }
 }

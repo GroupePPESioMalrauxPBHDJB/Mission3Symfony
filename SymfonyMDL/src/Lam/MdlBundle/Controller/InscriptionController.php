@@ -11,16 +11,46 @@ class InscriptionController extends Controller
     
     public function InscriptionInfoIndexAction($idFormation)
     {
+        $em = $this->getDoctrine()->getEntityManager();
+        $laFormation=$em->getRepository('LamMdlBundle:formation')->find($idFormation);
+        $laFormationInfo=$laFormation->getLaformationinformatique();
+        $nbPlace=$laFormationInfo->getNbplace();
+        $nbTotalInscrit=$laFormation->getNbinscrit();
         $lInscription= new Inscription;
-        $lInscription->setIdFormation($idFormation);
+        $lInscription->setIdFormation($laFormation);
         $laForm=$this->createForm(new inscriptionType(),$lInscription);
-        return $this->render('LamMdlBundle:Formulaire:inscriptionInfo.html.twig',array('form'=>$laForm->createView()));
+        $mess="";
+        $request= $this->getRequest();
+        //$url=$request->headers->get('referer');
+        if ($request->getMethod()=='POST'){
+                $laForm->bindRequest($request);
+                if ($laForm->isValid()){
+                    $em=$this->getDoctrine()->getEntityManager();
+                    $em->persist($lInscription);
+                    $em->flush();
+                    $mess='L\'inscription est effectuée.'; 
+        }
+                        }
+        return $this->render('LamMdlBundle:Formulaire:inscriptionInfo.html.twig',array('form'=>$laForm->createView(),'idFormation'=>$idFormation,  'mess'=>$mess));
     }
     public function InscriptionSportIndexAction($idFormation)
     {
+        $em = $this->getDoctrine()->getEntityManager();
+        $laFormation=$em->getRepository('LamMdlBundle:formation')->find($idFormation);
         $lInscription= new Inscription;
-        $lInscription->setIdFormation($idFormation);
+        $lInscription->setIdFormation($laFormation);
         $laForm=$this->createForm(new inscriptionType(),$lInscription);
-        return $this->render('LamMdlBundle:Formulaire:inscriptionSport.html.twig',array('form'=>$laForm->createView()));
+        $mess="";
+        $request= $this->getRequest();
+        if ($request->getMethod()=='POST'){
+                $laForm->bindRequest($request);
+                if ($laForm->isValid()){
+                    $em=$this->getDoctrine()->getEntityManager();
+                    $em->persist($lInscription);
+                    $em->flush();
+                    $mess='L\'inscription est effectuée.';
+        }
+        }
+        return $this->render('LamMdlBundle:Formulaire:inscriptionSport.html.twig',array('form'=>$laForm->createView(),'idFormation'=>$idFormation, 'mess'=>$mess));
     }
 }
