@@ -3,55 +3,75 @@
 {% block body %}
 {% if mess %}
  <p>{{ mess }}</p>
-
 {% endif  %}
- 
- 
- {% if form is defined%}
+{% if form is defined%}
+ {% if (nbPlace-nbTotalInscrit)==0 %}
+ <h1>Désolé, il n'y a plus de places disponible </h1>
+ {%else%}
   <h1>Inscription Formation Informatique </h1>
   <p>- {{TitreFormation}}, date: {{dateStage|date('Y-m-d')}}, horaire: {{horaireStage}} </p></br>
   <p> Nombre de place restante : {{nbPlace-nbTotalInscrit}} </p>
   
-  <form onsubmit="return validation({'Nom' : document.getElementById('form_nom'), 'Base' : document.getElementById('form_base'), 'Version Base (applicative)' : document.getElementById('form_version'), 'Nb User moyen' : document.getElementById('form_nbusersimumoyen'), 'Nb User total' : document.getElementById('form_nbusertotal'), 'Type d\'environnement' : document.getElementById('form_typeenv'),'Etat de l\'environnement': document.getElementById('form_etat'),'Type de base': document.getElementById('form_baseType'),'Version de base': document.getElementById('form_baseVersion')});" action="{{ path('LamMdlBundle_InscriptionInformatique',{'idFormation':idFormation}) }}" method="post" {{ form_enctype(form) }}>
+  <form onsubmit="return validation(document.getElementById('lam_mdlbundle_inscriptiontype_nbInscrit'));" action="{{ path('LamMdlBundle_InscriptionInformatique',{'idFormation':idFormation}) }}" method="post" {{ form_enctype(form) }}>
 {{ form_widget(form)}}
     
       
             <p> <button type="submit">Ajout</button></p>
       </form>
 
-  <p><a href="{{'http://localhost/Mission3Symfony/SymfonyMDL/web/app_dev.php/Mdl/'}}">Retour</a></p>
- 
+  <p><a href="{{ path('LamMdlBundle_homepage')}}">Retour</a></p>
+{% endif  %} 
 {% endif  %}
 {% endblock %}
   {% block javascript %}
-  function validation(lesChampRequired)
+  {% if form is defined%}
+  <script>
+      function trim (myString)
+{
+return myString.replace(/^\s+/g,'').replace(/\s+$/g,'')
+}
+  function validation(leChampNbInscrit)
         {
-           
-            var DebutChaine='Les champs: \n'; 
-            var Chaine = '';
-            var FinChaine='\n\nSont à renseigner.';
+            
+        
+            var Nbtest={{nbPlace-nbTotalInscrit}};
+            
             var valeurChamp;
-            var compteurChampVide=0;
-            for (var i in lesChampRequired)
-            {
-                 valeurChamp=lesChampRequired[i].value;
-                 if ($.trim(valeurChamp)==""||valeurChamp==null)
+            valeurChamp=leChampNbInscrit.value;
+            
+                 if (trim(valeurChamp)==""||valeurChamp==null)
                  {
-                     compteurChampVide++;
-                    Chaine += '\n\t-'+valeurChamp+' '+i+' \n';
-                 }
-            }
-            if (compteurChampVide>0)
-                 {
-                     Chaine=DebutChaine+Chaine+FinChaine; 
-                     alert(Chaine);
+                    alert('Il faut saisir une valeur pour le nombre d\'inscrit');
                      return false;
                  }
                  else
                  {
-                    return true;     
+                     if (isNaN(valeurChamp))
+                     {
+                        alert('Il faut saisir une valeur numérique pour le nombre d\'inscrit');
+                        return false;
+                     }
+                     else{
+                         if (valeurChamp<=0)
+                     {
+                        alert('Il faut saisir une valeur suppérieur a zéro pour le nombre d\'inscrit');
+                        return false;
+                     }
+                     else{
+                        if (valeurChamp>Nbtest)
+                     {
+                        alert('Il faut saisir une valeur inférieur au nombre de places disponible pour le nombre d\'inscrit');
+                        return false;
+                     }
+                     else{
+                        return true;
+                     }
+                     }
+                    }
                  }
         }
+        </script>
+        {% endif  %}
   {% endblock %}
   
   

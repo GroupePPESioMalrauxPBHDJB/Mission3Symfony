@@ -6,16 +6,72 @@
 {% endif  %}
  
  {% if form is defined%}
+ {% if (nbPlace-nbTotalInscrit)==0 %}
+ <h1>Désolé, il n'y a plus de places disponible </h1>
+ {%else%}
   <h1>Inscription Formation SPORT </h1>
   <p>- {{TitreFormation}}, date: {{dateStage|date('Y-m-d')}}, horaire: {{horaireStage}} </p></br>
   <p> Nombre de place restante : {{nbPlace-nbTotalInscrit}} </p>
   
-  <form action="{{ path('LamMdlBundle_InscriptionSport',{'idFormation':idFormation}) }}" method="post" {{ form_enctype(form) }}>
+  <form onsubmit="return validation(document.getElementById('lam_mdlbundle_inscriptiontype_nbInscrit'));" action="{{ path('LamMdlBundle_InscriptionSport',{'idFormation':idFormation}) }}" method="post" {{ form_enctype(form) }}>
 {{ form_widget(form)}}
           
           <p> <button type="submit">Ajout</button></p>
       </form>
 
-  <p><a href="{{'http://localhost/Mission3Symfony/SymfonyMDL/web/app_dev.php/Mdl/'}}">Retour</a></p>
+  <p><a href="{{path('LamMdlBundle_homepage')}}">Retour</a></p>
+
+{% endif  %}
 {% endif  %}
 {% endblock %}
+    {% block javascript %}
+  {% if form is defined%}
+  <script>
+      function trim (myString)
+{
+return myString.replace(/^\s+/g,'').replace(/\s+$/g,'')
+}
+  function validation(leChampNbInscrit)
+        {
+            
+        
+            var Nbtest={{nbPlace-nbTotalInscrit}};
+            
+            var valeurChamp;
+            valeurChamp=leChampNbInscrit.value;
+            
+                 if (trim(valeurChamp)==""||valeurChamp==null)
+                 {
+                    alert('Il faut saisir une valeur pour le nombre d\'inscrit');
+                     return false;
+                 }
+                 else
+                 {
+                     if (isNaN(valeurChamp))
+                     {
+                        alert('Il faut saisir une valeur numérique pour le nombre d\'inscrit');
+                        return false;
+                     }
+                     else{
+                         if (valeurChamp<=0)
+                     {
+                        alert('Il faut saisir une valeur suppérieur a zéro pour le nombre d\'inscrit');
+                        return false;
+                     }
+                     else{
+                        if (valeurChamp>Nbtest)
+                     {
+                        alert('Il faut saisir une valeur inférieur au nombre de places disponible pour le nombre d\'inscrit');
+                        return false;
+                     }
+                     else{
+                        return true;
+                     }
+                     }
+                    }
+                 }
+        }
+        </script>
+        {% endif  %}
+        {% endblock %}
+        
