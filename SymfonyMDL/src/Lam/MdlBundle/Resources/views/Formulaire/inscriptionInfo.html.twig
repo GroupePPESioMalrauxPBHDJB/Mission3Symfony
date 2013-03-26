@@ -6,9 +6,13 @@
 
 {% endif  %}
  
+ 
+ {% if form is defined%}
   <h1>Inscription Formation Informatique </h1>
+  <p>- {{TitreFormation}}, date: {{dateStage|date('Y-m-d')}}, horaire: {{horaireStage}} </p></br>
+  <p> Nombre de place restante : {{nbPlace-nbTotalInscrit}} </p>
   
-  <form action="{{ path('LamMdlBundle_InscriptionInformatique',{'idFormation':idFormation}) }}" method="post" {{ form_enctype(form) }}>
+  <form onsubmit="return validation({'Nom' : document.getElementById('form_nom'), 'Base' : document.getElementById('form_base'), 'Version Base (applicative)' : document.getElementById('form_version'), 'Nb User moyen' : document.getElementById('form_nbusersimumoyen'), 'Nb User total' : document.getElementById('form_nbusertotal'), 'Type d\'environnement' : document.getElementById('form_typeenv'),'Etat de l\'environnement': document.getElementById('form_etat'),'Type de base': document.getElementById('form_baseType'),'Version de base': document.getElementById('form_baseVersion')});" action="{{ path('LamMdlBundle_InscriptionInformatique',{'idFormation':idFormation}) }}" method="post" {{ form_enctype(form) }}>
 {{ form_widget(form)}}
     
       
@@ -17,5 +21,37 @@
 
   <p><a href="{{'http://localhost/Mission3Symfony/SymfonyMDL/web/app_dev.php/Mdl/'}}">Retour</a></p>
  
-
+{% endif  %}
 {% endblock %}
+  {% block javascript %}
+  function validation(lesChampRequired)
+        {
+           
+            var DebutChaine='Les champs: \n'; 
+            var Chaine = '';
+            var FinChaine='\n\nSont à renseigner.';
+            var valeurChamp;
+            var compteurChampVide=0;
+            for (var i in lesChampRequired)
+            {
+                 valeurChamp=lesChampRequired[i].value;
+                 if ($.trim(valeurChamp)==""||valeurChamp==null)
+                 {
+                     compteurChampVide++;
+                    Chaine += '\n\t-'+valeurChamp+' '+i+' \n';
+                 }
+            }
+            if (compteurChampVide>0)
+                 {
+                     Chaine=DebutChaine+Chaine+FinChaine; 
+                     alert(Chaine);
+                     return false;
+                 }
+                 else
+                 {
+                    return true;     
+                 }
+        }
+  {% endblock %}
+  
+  

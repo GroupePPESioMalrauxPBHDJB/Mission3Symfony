@@ -5,7 +5,10 @@
  <p>{{ mess }}</p>
 {% endif  %}
  
+ {% if form is defined%}
   <h1>Inscription Formation SPORT </h1>
+  <p>- {{TitreFormation}}, date: {{dateStage|date('Y-m-d')}}, horaire: {{horaireStage}} </p></br>
+  <p> Nombre de place restante : {{nbPlace-nbTotalInscrit}} </p>
   
   <form action="{{ path('LamMdlBundle_InscriptionSport',{'idFormation':idFormation}) }}" method="post" {{ form_enctype(form) }}>
 {{ form_widget(form)}}
@@ -14,4 +17,5 @@
       </form>
 
   <p><a href="{{'http://localhost/Mission3Symfony/SymfonyMDL/web/app_dev.php/Mdl/'}}">Retour</a></p>
+{% endif  %}
 {% endblock %}
